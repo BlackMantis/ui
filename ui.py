@@ -205,7 +205,7 @@ class Screen():
         raise NotImplementedError("The screen you are using hasn't overriden the draw method.")
 
     def clear(self):
-        self.app.drawRect(colors.general()["black"], 0, 0, self.app.standardWidth(), self.app.standardHeight())
+        self.app.drawRect((0, 0, 0), 0, 0, self.app.standardWidth(), self.app.standardHeight())
 
     def name(self):
         return self.__name
