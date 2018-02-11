@@ -225,6 +225,14 @@ class Widget():
     def draw(self):
         raise NotImplementedError("The Widget you are using hasn't overridden the draw method")
 
-#loadImage is outside the App class as it should be able to be accessed without needing an instance of app
+'''
+these functions are outside of the App class as they should
+be able to be accessedwithout needing an instance of app.
+'''
+
 def loadImage(path):
     return pygame.image.load(path)
+
+def textDimensions(text, size, font="monospace"):
+        font = pygame.font.SysFont(font, size)
+        return font.size(text)
