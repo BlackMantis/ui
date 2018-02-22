@@ -3,16 +3,14 @@ import pygame
 #author Ryan Bailey
 
 class App():
-    def __init__(self, title, width, height, standardWidth, standardHeight, iconLocation=None):
+    def __init__(self, title, intialWidth, initialHeight, resizable, iconLocation=None):
         pygame.init()
         pygame.font.init()
         
         self.__title = title
         self.__width = width    #window width
         self.__height = height  #window height
-        self.__standardWidth = standardWidth
-        self.__standardHeight = standardHeight
-
+        self.__resizable = resizable
         '''
         Standard width and standard height are the values for the width and
         height of the window when calling a function in the drawer class.
@@ -23,12 +21,6 @@ class App():
         same. The values used for the standard width and standard height must
         also have that same width-height ratio.
         '''
-
-        if not width/height == standardWidth/standardHeight:
-            raise RatioException("The window width-height ratio doesn't equal the standard width-height ratio")
-
-        #multiplying a length in standard units by the ratio gives you the length in pixels
-        self.__ratio = width/standardWidth
 
         pygame.display.set_caption(title)
         self.__window = pygame.display.set_mode((width, height))
@@ -172,29 +164,20 @@ class App():
         width = self.__scale(width)
         pygame.draw.line(self.__window, color, (x1, y1), (x2, y2), width)
 
-    def __scale(self, k): #scales standard units to pixels
-        return int(round(k*self.__ratio, 0))
-
-    def __reverseScale(self, k): #scales pixels to standard units
-        return int(round(k/self.__ratio, 0)) #030500
-
     def title(self):
         return self.__title
 
-    def standardWidth(self):
-        return self.__standardWidth
+    def width(self):
+        return self.__width
 
-    def standardHeight(self):
-        return self.__standardHeight
+    def height(self):
+        return self.__height
     
     def closeRequested(self): #returns true only if exit window button pressed
         return self.__closeRequested
 
     def close(self):
         pygame.quit()
-
-class RatioException(Exception):
-    pass
 
 class Screen():
     def __init__(self, app, name):
