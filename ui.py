@@ -11,16 +11,6 @@ class App():
         self.__width = width    #window width
         self.__height = height  #window height
         self.__resizable = resizable
-        '''
-        Standard width and standard height are the values for the width and
-        height of the window when calling a function in the drawer class.
-        Everything drawn is then scaled to the actual width and height of the
-        window before being drawn to the window. This allows for the width and
-        height of the window to be changed without having to change all of the
-        values used when drawing provided the width-height ratio remains the
-        same. The values used for the standard width and standard height must
-        also have that same width-height ratio.
-        '''
 
         pygame.display.set_caption(title)
         self.__window = pygame.display.set_mode((width, height))
